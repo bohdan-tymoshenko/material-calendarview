@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Parcel;
@@ -756,6 +757,10 @@ public class MaterialCalendarView extends ViewGroup {
      */
     public void setWeekDayTextAppearance(int resourceId) {
         adapter.setWeekDayTextAppearance(resourceId);
+    }
+
+    public void setWeekDayTypeface(Typeface typeface) {
+        adapter.setWeekDayTypeface(typeface);
     }
 
     /**

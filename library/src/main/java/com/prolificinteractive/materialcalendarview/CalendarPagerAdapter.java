@@ -1,5 +1,6 @@
 package com.prolificinteractive.materialcalendarview;
 
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
@@ -29,6 +30,7 @@ abstract class CalendarPagerAdapter<V extends CalendarPagerView> extends PagerAd
     private Integer color = null;
     private Integer dateTextAppearance = null;
     private Integer weekDayTextAppearance = null;
+    private Typeface weekDayTypeface = null;
     @ShowOtherDates
     private int showOtherDates = MaterialCalendarView.SHOW_DEFAULTS;
     private CalendarDay minDate = null;
@@ -83,6 +85,7 @@ abstract class CalendarPagerAdapter<V extends CalendarPagerView> extends PagerAd
         newAdapter.color = color;
         newAdapter.dateTextAppearance = dateTextAppearance;
         newAdapter.weekDayTextAppearance = weekDayTextAppearance;
+        newAdapter.weekDayTypeface = weekDayTypeface;
         newAdapter.showOtherDates = showOtherDates;
         newAdapter.minDate = minDate;
         newAdapter.maxDate = maxDate;
@@ -150,6 +153,9 @@ abstract class CalendarPagerAdapter<V extends CalendarPagerView> extends PagerAd
         }
         if (weekDayTextAppearance != null) {
             pagerView.setWeekDayTextAppearance(weekDayTextAppearance);
+        }
+        if (weekDayTypeface != null) {
+            pagerView.setWeekDayTypeface(weekDayTypeface);
         }
         pagerView.setShowOtherDates(showOtherDates);
         pagerView.setMinimumDate(minDate);
@@ -240,6 +246,13 @@ abstract class CalendarPagerAdapter<V extends CalendarPagerView> extends PagerAd
         }
     }
 
+    public void setWeekDayTypeface(Typeface typeface) {
+        this.weekDayTypeface = typeface;
+        for (V pagerView : currentViews) {
+            pagerView.setWeekDayTypeface(typeface);
+        }
+    }
+
     public void setRangeDates(CalendarDay min, CalendarDay max) {
         this.minDate = min;
         this.maxDate = max;
@@ -319,5 +332,9 @@ abstract class CalendarPagerAdapter<V extends CalendarPagerView> extends PagerAd
 
     protected int getWeekDayTextAppearance() {
         return weekDayTextAppearance == null ? 0 : weekDayTextAppearance;
+    }
+
+    protected Typeface getWeekDayTypeface() {
+        return weekDayTypeface;
     }
 }
